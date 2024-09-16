@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { sidebarLinks } from '@/constants'
 import { cn } from '@/lib/utils'
+import Footer from './Footer'
 
 
 const MobileNav = ({ user }: MobileNavProps) => {
@@ -50,18 +51,18 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     <SheetClose asChild key={link.route}>
 
                       <Link href={link.route} key={link.label} className={cn("mobilenav-sheet_close w-full ", { 'bg-bankGradient': isActive })}>
-                          <Image src={link.imgURL}
-                            height={20}
-                            width={20}
-                            alt={link.label}
-                            className={cn({
+                        <Image src={link.imgURL}
+                          height={20}
+                          width={20}
+                          alt={link.label}
+                          className={cn({
 
-                              'brightness-[3] invert-0': isActive
-                            })}
-                          />
-                          <p className={cn('text-16 font-semibold text-black-2 ', { 'text-white': isActive })}>
-                            {link.label}
-                          </p>
+                            'brightness-[3] invert-0': isActive
+                          })}
+                        />
+                        <p className={cn('text-16 font-semibold text-black-2 ', { 'text-white': isActive })}>
+                          {link.label}
+                        </p>
 
 
                       </Link>
@@ -71,7 +72,9 @@ const MobileNav = ({ user }: MobileNavProps) => {
                 User
               </nav>
             </SheetClose>
-            Footer
+            <Footer user={user} type="mobile"/>
+
+
           </div>
 
 
