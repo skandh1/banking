@@ -133,14 +133,15 @@ export function getAccountTypeColors(type: AccountTypes) {
 export function countTransactionCategories(
   transactions: Transaction[]
 ): CategoryCount[] {
+  
   const categoryCounts: { [category: string]: number } = {};
   let totalCount = 0;
 
   // Iterate over each transaction
-  transactions &&
-    transactions.forEach((transaction) => {
+
+  transactions && (transactions[0].forEach((transaction) => {
       // Extract the category from the transaction
-      const category = transaction.category;
+   const category = transaction.category;
 
       // If the category exists in the categoryCounts object, increment its count
       if (categoryCounts.hasOwnProperty(category)) {
@@ -152,7 +153,7 @@ export function countTransactionCategories(
 
       // Increment total count
       totalCount++;
-    });
+    }))
 
   // Convert the categoryCounts object to an array of objects
   const aggregatedCategories: CategoryCount[] = Object.keys(categoryCounts).map(
@@ -199,11 +200,11 @@ export const getTransactionStatus = (date: Date) => {
 export const authFormSchema = (type: string) =>  z.object({
   firstName: type==="sign-in" ? z.string().optional() : z.string().min(3).max(30),
   lastName: type==="sign-in" ? z.string().optional() : z.string().min(3).max(30),
-  Address: type==="sign-in" ? z.string().optional() : z.string().min(10).max(100),
+  address1: type==="sign-in" ? z.string().optional() : z.string().min(10).max(100),
   state: type==="sign-in" ? z.string().optional() : z.string().min(1).max(10),
   postalCode: type==="sign-in" ? z.string().optional() : z.string().min(4).max(10),
-  DOB: type==="sign-in" ? z.string().optional() : z.string().min(4).max(10),
-  SSN: type==="sign-in" ? z.string().optional() : z.string().min(4).max(10),
+  dateOfBirth: type==="sign-in" ? z.string().optional() : z.string().min(4).max(10),
+  ssn: type==="sign-in" ? z.string().optional() : z.string().min(4).max(10),
   city: type === "sign-in" ? z.string().optional() : z.string().min(4).max(100),
   
   email: z.string().email(),
